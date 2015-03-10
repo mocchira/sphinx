@@ -397,6 +397,10 @@ class PorterStemmer(object):
         if self.k <= self.k0 + 1:
             return self.b  # --DEPARTURE--
 
+        # quick hack to make "nfs" and "xfs" searchable
+        if self.b == "nfs" or self.b == "xfs":
+            return self.b
+
         # With this line, strings of length 1 or 2 don't go through the
         # stemming process, although no mention is made of this in the
         # published algorithm. Remove the line to match the published
